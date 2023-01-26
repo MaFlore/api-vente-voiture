@@ -9,6 +9,7 @@ import java.util.List;
 public interface VoitureService {
 
     public List<Voiture> getAll();
+    public List<Voiture> findByStatut(Boolean statut);
     public Voiture findById(Long id);
     public Voiture save(Voiture voiture);
     public Voiture update(Voiture voiture);

@@ -1,19 +1,30 @@
 package com.projet.classe.vente.controller;
 
+import com.projet.classe.vente.model.Historique;
 import com.projet.classe.vente.model.Vente;
+import com.projet.classe.vente.model.Voiture;
+import com.projet.classe.vente.service.HistoriqueService;
 import com.projet.classe.vente.service.VenteService;
+import com.projet.classe.vente.service.VoitureService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 @RestController
-@RequestMapping(name = "/api")
-@CrossOrigin(value = "*")
+@RequestMapping("/api")
+@CrossOrigin(origins = "*")
 public class VenteController {
 
     @Autowired
     public VenteService venteService;
+
+    @Autowired
+    public VoitureService voitureService;
+
+    @Autowired
+    public HistoriqueService historiqueService;
 
     @RequestMapping(value = "/ventes", method = RequestMethod.GET)
     public List<Vente> getAllVentes() {
@@ -49,6 +60,17 @@ public class VenteController {
     public Vente saveVente(@RequestBody Vente vente) {
 
         try {
+            Voiture voiture = vente.getVoiture();
+            voiture = this.voitureService.findById(voiture.getId());
+            voiture.setCouleur(voiture.getCouleur());
+            voiture.setDateAchat(voiture.getDateAchat());
+            voiture.setMarque(voiture.getMarque());
+            voiture.setModele(voiture.getModele());
+            voiture.setNumeroIdentifiant(voiture.getNumeroIdentifiant());
+            voiture.setNumeroSerie(voiture.getNumeroSerie());
+            voiture.setStatut(false);
+            this.voitureService.save(voiture);
+            vente.setVoiture(voiture);
             vente = this.venteService.save(vente);
         } catch (Exception e) {
             System.out.println("Erreur " + e.getMessage());
@@ -60,6 +82,7 @@ public class VenteController {
     @RequestMapping(value = "/vente/modifier/{id}", method = RequestMethod.PUT, headers = "accept=Application/json")
     public Vente updateVente(@RequestBody Vente vente) {
 
+        Historique historique = new Historique();
         try {
             vente = this.venteService.update(vente);
         } catch (Exception e) {

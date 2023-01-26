@@ -20,9 +20,8 @@ public class Client extends Personne{
     public Client() {
     }
 
-    public Client(String nom, String prenom, String telephone, String username, String password, Set<Vente> ventes) {
+    public Client(String nom, String prenom, String telephone, String username, String password) {
         super(nom, prenom, telephone, username, password);
-        this.ventes = ventes;
     }
 
     @Override
@@ -41,7 +40,6 @@ public class Client extends Personne{
     @Override
     public String toString() {
         return "Client{" +
-                "ventes=" + ventes +
                 ", nom='" + nom + '\'' +
                 ", prenom='" + prenom + '\'' +
                 ", telephone='" + telephone + '\'' +

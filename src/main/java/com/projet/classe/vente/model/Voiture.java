@@ -45,7 +45,7 @@ public class Voiture {
     public Voiture() {
     }
 
-    public Voiture(String numeroIdentifiant, String numeroSerie, Date dateAchat, String couleur, Boolean statut, Modele modele, Marque marque, Set<Vente> ventes) {
+    public Voiture(String numeroIdentifiant, String numeroSerie, Date dateAchat, String couleur, Boolean statut, Modele modele, Marque marque) {
         this.numeroIdentifiant = numeroIdentifiant;
         this.numeroSerie = numeroSerie;
         this.dateAchat = dateAchat;
@@ -53,7 +53,6 @@ public class Voiture {
         this.statut = statut;
         this.modele = modele;
         this.marque = marque;
-        this.ventes = ventes;
     }
 
     public Long getId() {
@@ -96,8 +95,8 @@ public class Voiture {
         return statut;
     }
 
-    public void setStatut(Boolean statut) {
-        this.statut = statut;
+    public Boolean setStatut(Boolean statut) {
+        return this.statut = statut;
     }
 
     public Modele getModele() {
@@ -134,7 +133,6 @@ public class Voiture {
                 ", statut=" + statut +
                 ", modele=" + modele +
                 ", marque=" + marque +
-                ", ventes=" + ventes +
                 '}';
     }
 }

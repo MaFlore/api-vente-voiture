@@ -8,13 +8,28 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 @RestController
-@RequestMapping(name = "/api")
-@CrossOrigin(value = "8")
+@RequestMapping("/api")
+@CrossOrigin(origins = "*")
 public class VoitureController {
 
     @Autowired
     public VoitureService voitureService;
 
+    @RequestMapping(value = "/voitures/statuts", method = RequestMethod.GET)
+    public List<Voiture> getAllVoituresByStatut() {
+
+        List<Voiture> voitures = new ArrayList<>();
+
+        try {
+            voitures = this.voitureService.findByStatut(true);
+        } catch (Exception e) {
+            // TODO: handle exception
+            System.out.println("Erreur " + e.getMessage());
+        }
+
+        return voitures;
+
+    }
     @RequestMapping(value = "/voitures", method = RequestMethod.GET)
     public List<Voiture> getAllVoitures() {
 
@@ -49,6 +64,7 @@ public class VoitureController {
     public Voiture saveVoiture(@RequestBody Voiture voiture) {
 
         try {
+            voiture.setStatut(true);
             voiture = this.voitureService.save(voiture);
         } catch (Exception e) {
             System.out.println("Erreur " + e.getMessage());

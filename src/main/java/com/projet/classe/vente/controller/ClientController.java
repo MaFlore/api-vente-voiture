@@ -9,8 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping(name = "/api")
-@CrossOrigin(value = "*")
+@RequestMapping("/api")
+@CrossOrigin(origins = "*")
 public class ClientController {
 
     @Autowired

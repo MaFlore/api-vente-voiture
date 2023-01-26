@@ -36,12 +36,11 @@ public class Vente {
     public Vente() {
     }
 
-    public Vente(Date dateVente, Double montant, Client client, Voiture voiture, Set<Historique> historiques) {
+    public Vente(Date dateVente, Double montant, Client client, Voiture voiture) {
         this.dateVente = dateVente;
         this.montant = montant;
         this.client = client;
         this.voiture = voiture;
-        this.historiques = historiques;
     }
 
     public Long getId() {
@@ -95,7 +94,6 @@ public class Vente {
                 ", montant=" + montant +
                 ", client=" + client +
                 ", voiture=" + voiture +
-                ", historiques=" + historiques +
                 '}';
     }
 }
