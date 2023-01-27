@@ -2,7 +2,6 @@ package com.projet.classe.vente.model;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.Set;
 
 @Entity
 @Table(name = "ventes")
@@ -28,10 +27,6 @@ public class Vente {
     @ManyToOne()
     @JoinColumn(name = "voiture_id", referencedColumnName = "id")
     private Voiture voiture;
-
-    /*Relation OneToMany entre Vente et Historique*/
-    @OneToMany(mappedBy = "vente")
-    private Set<Historique> historiques;
 
     public Vente() {
     }
@@ -77,14 +72,6 @@ public class Vente {
 
     public void setVoiture(Voiture voiture) {
         this.voiture = voiture;
-    }
-
-    public Set<Historique> getHistoriques() {
-        return historiques;
-    }
-
-    public void setHistoriques(Set<Historique> historiques) {
-        this.historiques = historiques;
     }
 
     @Override

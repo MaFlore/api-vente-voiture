@@ -18,18 +18,12 @@ public class Historique {
     @Temporal(TemporalType.DATE)
     private Date dateHistorique;
 
-    /*Relation entre ManyToOne entre Historique et Vente*/
-    @ManyToOne()
-    @JoinColumn(name = "vente_id", referencedColumnName = "id")
-    private Vente vente;
-
     public Historique() {
     }
 
     public Historique(String description, Date dateHistorique, Vente vente) {
         this.description = description;
         this.dateHistorique = dateHistorique;
-        this.vente = vente;
     }
 
     public Long getId() {
@@ -52,20 +46,11 @@ public class Historique {
         this.dateHistorique = dateHistorique;
     }
 
-    public Vente getVente() {
-        return vente;
-    }
-
-    public void setVente(Vente vente) {
-        this.vente = vente;
-    }
-
     @Override
     public String toString() {
         return "Historique{" +
                 "description='" + description + '\'' +
                 ", dateHistorique=" + dateHistorique +
-                ", vente=" + vente +
                 '}';
     }
 }
