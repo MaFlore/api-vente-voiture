@@ -46,31 +46,6 @@ public class HistoriqueController {
         return historique;
     }
 
-    @RequestMapping(value = "/historique/ajouter", method = RequestMethod.POST, headers = "accept=Application/json")
-    public Historique saveHistorique(@RequestBody Historique historique) {
-
-        try {
-            historique = this.historiqueService.save(historique);
-        } catch (Exception e) {
-            System.out.println("Erreur " + e.getMessage());
-        }
-
-        return historique;
-    }
-
-    @RequestMapping(value = "/historique/modifier/{id}", method = RequestMethod.PUT, headers = "accept=Application/json")
-    public Historique updateHistorique(@RequestBody Historique historique) {
-
-        try {
-            historique = this.historiqueService.update(historique);
-        } catch (Exception e) {
-            System.out.println("Erreur " + e.getMessage());
-        }
-
-        return historique;
-
-    }
-
     @RequestMapping(value = "/historique/supprimer/{id}", method = RequestMethod.DELETE, headers = "accept=Application/json")
     public void deleteHistorique(@PathVariable Long id) {
         this.historiqueService.deleteById(id);
