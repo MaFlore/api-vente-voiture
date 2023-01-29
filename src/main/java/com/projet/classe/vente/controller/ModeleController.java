@@ -78,7 +78,7 @@ public class ModeleController {
         return modele;
     }
 
-    @RequestMapping(value = "/modele/modifier/{id}", method = RequestMethod.PUT, headers = "accept=Application/json")
+    @RequestMapping(value = "/modele/modifier", method = RequestMethod.PUT, headers = "accept=Application/json")
     public Modele updateModele(@RequestBody Modele modele) {
 
         try {
