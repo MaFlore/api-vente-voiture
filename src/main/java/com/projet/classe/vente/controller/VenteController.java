@@ -26,6 +26,8 @@ public class VenteController {
     @Autowired
     public HistoriqueService historiqueService;
 
+    public Historique historique;
+
     @RequestMapping(value = "/ventes", method = RequestMethod.GET)
     public List<Vente> getAllVentes() {
 
@@ -33,6 +35,10 @@ public class VenteController {
 
         try {
             ventes = this.venteService.getAll();
+
+            historique.setDescription("Consultation de la liste des ventes");
+            historique.setDateHistorique(new Date());
+            this.historiqueService.save(historique);
         } catch (Exception e) {
             // TODO: handle exception
             System.out.println("Erreur " + e.getMessage());
@@ -49,6 +55,10 @@ public class VenteController {
 
         try {
             vente = this.venteService.findById(id);
+
+            historique.setDescription("Affichage de la vente " + vente.getId());
+            historique.setDateHistorique(new Date());
+            this.historiqueService.save(historique);
         } catch (Exception e) {
             System.out.println("Erreur " + e.getMessage());
         }
@@ -72,29 +82,22 @@ public class VenteController {
             this.voitureService.save(voiture);
             vente.setVoiture(voiture);
             vente = this.venteService.save(vente);
+
+            historique.setDescription("Ajout de la vente " + vente.getId());
+            historique.setDateHistorique(new Date());
+            this.historiqueService.save(historique);
         } catch (Exception e) {
             System.out.println("Erreur " + e.getMessage());
         }
 
         return vente;
-    }
-
-    @RequestMapping(value = "/vente/modifier/{id}", method = RequestMethod.PUT, headers = "accept=Application/json")
-    public Vente updateVente(@RequestBody Vente vente) {
-
-        Historique historique = new Historique();
-        try {
-            vente = this.venteService.update(vente);
-        } catch (Exception e) {
-            System.out.println("Erreur " + e.getMessage());
-        }
-
-        return vente;
-
     }
 
     @RequestMapping(value = "/vente/supprimer/{id}", method = RequestMethod.DELETE, headers = "accept=Application/json")
     public void deleteVente(@PathVariable Long id) {
         this.venteService.deleteById(id);
+        historique.setDescription("Suppression de la vente : " + id);
+        historique.setDateHistorique(new Date());
+        this.historiqueService.save(historique);
     }
 }
