@@ -102,4 +102,10 @@ public class ClientController {
         historique.setDateHistorique(new Date());
         this.historiqueService.save(historique);
     }
+
+    @RequestMapping(value = "/client/count", method = RequestMethod.GET)
+    public int countClient(){
+        int nombres = (int) this.clientService.count();
+        return nombres;
+    }
 }
