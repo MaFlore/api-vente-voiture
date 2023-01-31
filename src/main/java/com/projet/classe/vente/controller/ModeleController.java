@@ -102,4 +102,10 @@ public class ModeleController {
         historique.setDateHistorique(new Date());
         this.historiqueService.save(historique);
     }
+
+    @RequestMapping(value = "/modele/count", method = RequestMethod.GET)
+    public int countModele(){
+        int nombres = (int) this.modeleService.count();
+        return nombres;
+    }
 }
