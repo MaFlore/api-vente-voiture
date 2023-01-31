@@ -102,4 +102,10 @@ public class VoitureController {
         historique.setDateHistorique(new Date());
         this.historiqueService.save(historique);
     }
+
+    @RequestMapping(value = "/voiture/count", method = RequestMethod.GET)
+    public int countVoiture(){
+        int nombres = (int) this.voitureService.count();
+        return nombres;
+    }
 }
