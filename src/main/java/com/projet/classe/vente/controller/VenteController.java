@@ -100,4 +100,10 @@ public class VenteController {
         historique.setDateHistorique(new Date());
         this.historiqueService.save(historique);
     }
+
+    @RequestMapping(value = "/vente/count", method = RequestMethod.GET)
+    public int countVente(){
+        int nombres = (int) this.venteService.count();
+        return nombres;
+    }
 }
