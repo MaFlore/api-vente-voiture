@@ -41,7 +41,7 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
-    public void count() {
-        this.clientRepository.count();
+    public long count() {
+        return this.clientRepository.count();
     }
 }

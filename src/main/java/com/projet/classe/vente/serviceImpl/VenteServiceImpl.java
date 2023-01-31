@@ -40,7 +40,7 @@ public class VenteServiceImpl implements VenteService {
     }
 
     @Override
-    public void count() {
-        this.venteRepository.count();
+    public long count() {
+        return this.venteRepository.count();
     }
 }

@@ -13,5 +13,5 @@ public interface ModeleService {
     public Modele save(Modele modele);
     public Modele update(Modele modele);
     public void deleteById(Long id);
-    public void count();
+    public long count();
 }

@@ -13,5 +13,5 @@ public interface HistoriqueService {
     public Historique save(Historique historique);
     public Historique update(Historique historique);
     public void deleteById(Long id);
-    public void count();
+    public long count();
 }

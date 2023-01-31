@@ -40,7 +40,7 @@ public class MarqueServiceImpl implements MarqueService {
     }
 
     @Override
-    public void count() {
-        this.marqueRepository.count();
+    public long count() {
+        return this.marqueRepository.count();
     }
 }

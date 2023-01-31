@@ -40,7 +40,7 @@ public class HistoriqueServiceImpl implements HistoriqueService {
     }
 
     @Override
-    public void count() {
-        this.historiqueRepository.count();
+    public long count() {
+        return this.historiqueRepository.count();
     }
 }

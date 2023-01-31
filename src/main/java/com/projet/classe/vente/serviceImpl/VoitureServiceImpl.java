@@ -43,7 +43,7 @@ public class VoitureServiceImpl implements VoitureService {
     }
 
     @Override
-    public void count() {
-        this.voitureRepository.count();
+    public long count() {
+        return this.voitureRepository.count();
     }
 }

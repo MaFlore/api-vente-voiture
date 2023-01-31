@@ -40,7 +40,7 @@ public class ModeleServiceImpl implements ModeleService {
     }
 
     @Override
-    public void count() {
-        this.modeleRepository.count();
+    public long count() {
+        return this.modeleRepository.count();
     }
 }
