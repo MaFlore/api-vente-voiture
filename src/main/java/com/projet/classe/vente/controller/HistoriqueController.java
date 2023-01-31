@@ -50,4 +50,10 @@ public class HistoriqueController {
     public void deleteHistorique(@PathVariable Long id) {
         this.historiqueService.deleteById(id);
     }
+
+    @RequestMapping(value = "/historique/count", method = RequestMethod.GET)
+    public int countHistorique(){
+        int nombres = (int) this.historiqueService.count();
+        return nombres;
+    }
 }
