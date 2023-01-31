@@ -13,4 +13,5 @@ public interface MarqueService {
     public Marque save(Marque marque);
     public Marque update(Marque marque);
     public void deleteById(Long id);
+    public void count();
 }

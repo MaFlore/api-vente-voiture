@@ -14,4 +14,5 @@ public interface VoitureService {
     public Voiture save(Voiture voiture);
     public Voiture update(Voiture voiture);
     public void deleteById(Long id);
+    public void count();
 }

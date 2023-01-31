@@ -13,4 +13,5 @@ public interface ClientService {
     public Client save(Client client);
     public Client update(Client client);
     public void deleteById(Long id);
+    public void count();
 }

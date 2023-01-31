@@ -38,4 +38,9 @@ public class ModeleServiceImpl implements ModeleService {
     public void deleteById(Long id) {
         this.modeleRepository.deleteById(id);
     }
+
+    @Override
+    public void count() {
+        this.modeleRepository.count();
+    }
 }

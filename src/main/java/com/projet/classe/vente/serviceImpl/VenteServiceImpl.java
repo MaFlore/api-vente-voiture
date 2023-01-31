@@ -38,4 +38,9 @@ public class VenteServiceImpl implements VenteService {
     public void deleteById(Long id) {
         this.venteRepository.deleteById(id);
     }
+
+    @Override
+    public void count() {
+        this.venteRepository.count();
+    }
 }

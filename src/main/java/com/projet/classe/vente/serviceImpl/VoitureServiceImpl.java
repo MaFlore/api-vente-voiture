@@ -41,4 +41,9 @@ public class VoitureServiceImpl implements VoitureService {
     public void deleteById(Long id) {
         this.voitureRepository.deleteById(id);
     }
+
+    @Override
+    public void count() {
+        this.voitureRepository.count();
+    }
 }

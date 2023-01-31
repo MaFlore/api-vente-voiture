@@ -38,4 +38,9 @@ public class HistoriqueServiceImpl implements HistoriqueService {
     public void deleteById(Long id) {
         this.historiqueRepository.deleteById(id);
     }
+
+    @Override
+    public void count() {
+        this.historiqueRepository.count();
+    }
 }

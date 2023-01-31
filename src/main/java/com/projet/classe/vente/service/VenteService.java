@@ -13,4 +13,5 @@ public interface VenteService {
     public Vente save(Vente vente);
     public Vente update(Vente vente);
     public void deleteById(Long id);
+    public void count();
 }

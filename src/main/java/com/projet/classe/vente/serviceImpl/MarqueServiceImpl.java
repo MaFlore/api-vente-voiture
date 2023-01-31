@@ -38,4 +38,9 @@ public class MarqueServiceImpl implements MarqueService {
     public void deleteById(Long id) {
         this.marqueRepository.deleteById(id);
     }
+
+    @Override
+    public void count() {
+        this.marqueRepository.count();
+    }
 }
