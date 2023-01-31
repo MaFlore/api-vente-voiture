@@ -102,4 +102,10 @@ public class MarqueController {
         historique.setDateHistorique(new Date());
         this.historiqueService.save(historique);
     }
+
+    @RequestMapping(value = "/marque/count", method = RequestMethod.GET)
+    public int countMarque(){
+        int nombres = (int) this.marqueService.count();
+        return nombres;
+    }
 }
