@@ -14,8 +14,8 @@ public class Client extends Personne{
     protected Long id;
 
     /*Relation OneToMany entre Client et Vente*/
-    @OneToMany(mappedBy = "client")
-    private Set<Vente> ventes;
+    /*@OneToMany(mappedBy = "client")
+    private Set<Vente> ventes;*/
 
     public Client() {
     }
@@ -29,13 +29,13 @@ public class Client extends Personne{
         return id;
     }
 
-    public Set<Vente> getVentes() {
+    /*public Set<Vente> getVentes() {
         return ventes;
     }
 
     public void setVentes(Set<Vente> ventes) {
         this.ventes = ventes;
-    }
+    }*/
 
     @Override
     public String toString() {

@@ -1,8 +1,6 @@
 package com.projet.classe.vente.controller;
 
-import com.projet.classe.vente.model.Historique;
 import com.projet.classe.vente.model.Voiture;
-import com.projet.classe.vente.service.HistoriqueService;
 import com.projet.classe.vente.service.VoitureService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -17,10 +15,6 @@ public class VoitureController {
 
     @Autowired
     public VoitureService voitureService;
-
-    @Autowired
-    public HistoriqueService historiqueService;
-
     @RequestMapping(value = "/voitures", method = RequestMethod.GET)
     public List<Voiture> getAllVoitures() {
 
@@ -28,11 +22,23 @@ public class VoitureController {
 
         try {
             voitures = this.voitureService.getAll();
+        } catch (Exception e) {
+            // TODO: handle exception
+            System.out.println("Erreur " + e.getMessage());
+        }
 
-            Historique historique = new Historique();
-            historique.setDescription("Consultation de la liste des voitures");
-            historique.setDateHistorique(new Date());
-            this.historiqueService.save(historique);
+        return voitures;
+
+    }
+
+    @RequestMapping(value = "/voitures/statut", method = RequestMethod.GET)
+    public List<Voiture> getAllVoituresByStatut() {
+
+        List<Voiture> voitures = new ArrayList<>();
+
+        try {
+            voitures = this.voitureService.findByStatut(true);
+
         } catch (Exception e) {
             // TODO: handle exception
             System.out.println("Erreur " + e.getMessage());
@@ -49,11 +55,6 @@ public class VoitureController {
 
         try {
             voiture = this.voitureService.findById(id);
-
-            Historique historique = new Historique();
-            historique.setDescription("Affichage de la voiture " + voiture.getNumeroIdentifiant());
-            historique.setDateHistorique(new Date());
-            this.historiqueService.save(historique);
         } catch (Exception e) {
             System.out.println("Erreur " + e.getMessage());
         }
@@ -66,12 +67,6 @@ public class VoitureController {
 
         try {
             voiture.setStatut(true);
-            voiture = this.voitureService.save(voiture);
-
-            Historique historique = new Historique();
-            historique.setDescription("Ajout de la voiture " + voiture.getNumeroIdentifiant());
-            historique.setDateHistorique(new Date());
-            this.historiqueService.save(historique);
         } catch (Exception e) {
             System.out.println("Erreur " + e.getMessage());
         }
@@ -84,11 +79,6 @@ public class VoitureController {
 
         try {
             voiture = this.voitureService.update(voiture);
-
-            Historique historique = new Historique();
-            historique.setDescription("Modification de la voiture " + voiture.getNumeroIdentifiant());
-            historique.setDateHistorique(new Date());
-            this.historiqueService.save(historique);
         } catch (Exception e) {
             System.out.println("Erreur " + e.getMessage());
         }
@@ -100,11 +90,6 @@ public class VoitureController {
     @RequestMapping(value = "/voiture/supprimer/{id}", method = RequestMethod.DELETE, headers = "accept=Application/json")
     public void deleteVoiture(@PathVariable Long id) {
         this.voitureService.deleteById(id);
-
-        Historique historique = new Historique();
-        historique.setDescription("Suppression de la voiture " + id);
-        historique.setDateHistorique(new Date());
-        this.historiqueService.save(historique);
     }
 
     @RequestMapping(value = "/voiture/count", method = RequestMethod.GET)

@@ -39,8 +39,8 @@ public class Voiture {
     private Marque marque;
 
     /**Relation OneToMany entre Voiture et Vente*/
-    @OneToMany(mappedBy = "voiture")
-    private Set<Vente> ventes;
+    /*@OneToMany(mappedBy = "voiture")
+    private Set<Vente> ventes;*/
 
     public Voiture() {
     }
@@ -115,13 +115,13 @@ public class Voiture {
         this.marque = marque;
     }
 
-    public Set<Vente> getVentes() {
+    /*public Set<Vente> getVentes() {
         return ventes;
     }
 
     public void setVentes(Set<Vente> ventes) {
         this.ventes = ventes;
-    }
+    }*/
 
     @Override
     public String toString() {

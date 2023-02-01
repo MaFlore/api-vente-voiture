@@ -18,8 +18,8 @@ public class Marque {
     private String libelle;
 
     /*Relation OneToMany entre Marque et Voiture*/
-    @OneToMany(mappedBy = "marque", fetch = FetchType.LAZY)
-    private Set<Voiture> voitures;
+    /*@OneToMany(mappedBy = "marque", fetch = FetchType.LAZY)
+    private Set<Voiture> voitures;*/
 
     public Marque() {
     }
