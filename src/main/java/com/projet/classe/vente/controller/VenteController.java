@@ -26,8 +26,6 @@ public class VenteController {
     @Autowired
     public HistoriqueService historiqueService;
 
-    public Historique historique;
-
     @RequestMapping(value = "/ventes", method = RequestMethod.GET)
     public List<Vente> getAllVentes() {
 
@@ -36,6 +34,7 @@ public class VenteController {
         try {
             ventes = this.venteService.getAll();
 
+            Historique historique = new Historique();
             historique.setDescription("Consultation de la liste des ventes");
             historique.setDateHistorique(new Date());
             this.historiqueService.save(historique);
@@ -56,6 +55,7 @@ public class VenteController {
         try {
             vente = this.venteService.findById(id);
 
+            Historique historique = new Historique();
             historique.setDescription("Affichage de la vente " + vente.getId());
             historique.setDateHistorique(new Date());
             this.historiqueService.save(historique);
@@ -83,6 +83,7 @@ public class VenteController {
             vente.setVoiture(voiture);
             vente = this.venteService.save(vente);
 
+            Historique historique = new Historique();
             historique.setDescription("Ajout de la vente " + vente.getId());
             historique.setDateHistorique(new Date());
             this.historiqueService.save(historique);
@@ -96,6 +97,8 @@ public class VenteController {
     @RequestMapping(value = "/vente/supprimer/{id}", method = RequestMethod.DELETE, headers = "accept=Application/json")
     public void deleteVente(@PathVariable Long id) {
         this.venteService.deleteById(id);
+
+        Historique historique = new Historique();
         historique.setDescription("Suppression de la vente : " + id);
         historique.setDateHistorique(new Date());
         this.historiqueService.save(historique);

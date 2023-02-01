@@ -22,8 +22,6 @@ public class ModeleController {
     @Autowired
     public HistoriqueService historiqueService;
 
-    public Historique historique;
-
     @RequestMapping(value = "/modeles", method = RequestMethod.GET)
     public List<Modele> getAllModeles() {
 
@@ -32,6 +30,7 @@ public class ModeleController {
         try {
             modeles = this.modeleService.getAll();
 
+            Historique historique = new Historique();
             historique.setDescription("Consultation de la liste des modèles de voitures");
             historique.setDateHistorique(new Date());
             this.historiqueService.save(historique);
@@ -52,6 +51,7 @@ public class ModeleController {
         try {
             modele = this.modeleService.findById(id);
 
+            Historique historique = new Historique();
             historique.setDescription("Affichage du modèle " + modele.getCode());
             historique.setDateHistorique(new Date());
             this.historiqueService.save(historique);
@@ -68,6 +68,7 @@ public class ModeleController {
         try {
             modele = this.modeleService.save(modele);
 
+            Historique historique = new Historique();
             historique.setDescription("Ajout du modèle " + modele.getCode());
             historique.setDateHistorique(new Date());
             this.historiqueService.save(historique);
@@ -84,6 +85,7 @@ public class ModeleController {
         try {
             modele = this.modeleService.update(modele);
 
+            Historique historique = new Historique();
             historique.setDescription("Modification du modèle " + modele.getCode());
             historique.setDateHistorique(new Date());
             this.historiqueService.save(historique);
@@ -98,6 +100,8 @@ public class ModeleController {
     @RequestMapping(value = "/modele/supprimer/{id}", method = RequestMethod.DELETE, headers = "accept=Application/json")
     public void deleteModele(@PathVariable Long id) {
         this.modeleService.deleteById(id);
+
+        Historique historique = new Historique();
         historique.setDescription("Suppression du modèle " + id);
         historique.setDateHistorique(new Date());
         this.historiqueService.save(historique);

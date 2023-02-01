@@ -18,7 +18,7 @@ public class Personne {
     @Column(name = "prenom")
     protected String prenom;
 
-    @Column(name = "telephone")
+    @Column(name = "telephone", nullable = false, unique = true)
     protected String telephone;
 
     @Column(name = "username")

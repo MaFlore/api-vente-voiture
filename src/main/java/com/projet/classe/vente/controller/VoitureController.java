@@ -21,8 +21,6 @@ public class VoitureController {
     @Autowired
     public HistoriqueService historiqueService;
 
-    public Historique historique;
-
     @RequestMapping(value = "/voitures", method = RequestMethod.GET)
     public List<Voiture> getAllVoitures() {
 
@@ -31,6 +29,7 @@ public class VoitureController {
         try {
             voitures = this.voitureService.getAll();
 
+            Historique historique = new Historique();
             historique.setDescription("Consultation de la liste des voitures");
             historique.setDateHistorique(new Date());
             this.historiqueService.save(historique);
@@ -51,6 +50,7 @@ public class VoitureController {
         try {
             voiture = this.voitureService.findById(id);
 
+            Historique historique = new Historique();
             historique.setDescription("Affichage de la voiture " + voiture.getNumeroIdentifiant());
             historique.setDateHistorique(new Date());
             this.historiqueService.save(historique);
@@ -68,6 +68,7 @@ public class VoitureController {
             voiture.setStatut(true);
             voiture = this.voitureService.save(voiture);
 
+            Historique historique = new Historique();
             historique.setDescription("Ajout de la voiture " + voiture.getNumeroIdentifiant());
             historique.setDateHistorique(new Date());
             this.historiqueService.save(historique);
@@ -84,6 +85,7 @@ public class VoitureController {
         try {
             voiture = this.voitureService.update(voiture);
 
+            Historique historique = new Historique();
             historique.setDescription("Modification de la voiture " + voiture.getNumeroIdentifiant());
             historique.setDateHistorique(new Date());
             this.historiqueService.save(historique);
@@ -98,6 +100,8 @@ public class VoitureController {
     @RequestMapping(value = "/voiture/supprimer/{id}", method = RequestMethod.DELETE, headers = "accept=Application/json")
     public void deleteVoiture(@PathVariable Long id) {
         this.voitureService.deleteById(id);
+
+        Historique historique = new Historique();
         historique.setDescription("Suppression de la voiture " + id);
         historique.setDateHistorique(new Date());
         this.historiqueService.save(historique);

@@ -22,8 +22,6 @@ public class MarqueController {
     @Autowired
     public HistoriqueService historiqueService;
 
-    public Historique historique;
-
     @RequestMapping(value = "/marques", method = RequestMethod.GET)
     public List<Marque> getAllMarques() {
 
@@ -32,6 +30,7 @@ public class MarqueController {
         try {
             marques = this.marqueService.getAll();
 
+            Historique historique = new Historique();
             historique.setDescription("Consultation de la liste des marques");
             historique.setDateHistorique(new Date());
             this.historiqueService.save(historique);
@@ -52,6 +51,7 @@ public class MarqueController {
         try {
             marque = this.marqueService.findById(id);
 
+            Historique historique = new Historique();
             historique.setDescription("Affichage de la marque " + marque.getCode());
             historique.setDateHistorique(new Date());
             this.historiqueService.save(historique);
@@ -68,6 +68,7 @@ public class MarqueController {
         try {
             marque = this.marqueService.save(marque);
 
+            Historique historique = new Historique();
             historique.setDescription("Ajout de la marque " + marque.getCode());
             historique.setDateHistorique(new Date());
             this.historiqueService.save(historique);
@@ -84,6 +85,7 @@ public class MarqueController {
         try {
             marque = this.marqueService.update(marque);
 
+            Historique historique = new Historique();
             historique.setDescription("Modification de la marque " + marque.getCode());
             historique.setDateHistorique(new Date());
             this.historiqueService.save(historique);
@@ -98,6 +100,8 @@ public class MarqueController {
     @RequestMapping(value = "/marque/supprimer/{id}", method = RequestMethod.DELETE, headers = "accept=Application/json")
     public void deleteMarque(@PathVariable Long id) {
         this.marqueService.deleteById(id);
+
+        Historique historique = new Historique();
         historique.setDescription("Suppression de la marque " + id);
         historique.setDateHistorique(new Date());
         this.historiqueService.save(historique);

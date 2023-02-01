@@ -22,8 +22,6 @@ public class ClientController {
     @Autowired
     public HistoriqueService historiqueService;
 
-    public Historique historique;
-
     @RequestMapping(value = "/clients", method = RequestMethod.GET)
     public List<Client> getAllClients() {
 
@@ -32,6 +30,7 @@ public class ClientController {
         try {
             clients = this.clientService.getAll();
 
+            Historique historique = new Historique();
             historique.setDescription("Consultation de la liste des clients");
             historique.setDateHistorique(new Date());
             this.historiqueService.save(historique);
@@ -52,6 +51,7 @@ public class ClientController {
         try {
             client = this.clientService.findById(id);
 
+            Historique historique = new Historique();
             historique.setDescription("Affichage du client " + client.getNom());
             historique.setDateHistorique(new Date());
             this.historiqueService.save(historique);
@@ -68,6 +68,7 @@ public class ClientController {
         try {
             client = this.clientService.save(client);
 
+            Historique historique = new Historique();
             historique.setDescription("Ajout du client " + client.getNom());
             historique.setDateHistorique(new Date());
             this.historiqueService.save(historique);
@@ -84,6 +85,7 @@ public class ClientController {
         try {
             client = this.clientService.update(client);
 
+            Historique historique = new Historique();
             historique.setDescription("Modification du client " + client.getNom());
             historique.setDateHistorique(new Date());
             this.historiqueService.save(historique);
@@ -98,6 +100,8 @@ public class ClientController {
     @RequestMapping(value = "/client/supprimer/{id}", method = RequestMethod.DELETE, headers = "accept=Application/json")
     public void deleteClient(@PathVariable Long id) {
         this.clientService.deleteById(id);
+
+        Historique historique = new Historique();
         historique.setDescription("Suppression du client " + id);
         historique.setDateHistorique(new Date());
         this.historiqueService.save(historique);
