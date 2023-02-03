@@ -67,6 +67,7 @@ public class VoitureController {
 
         try {
             voiture.setStatut(true);
+            voiture = this.voitureService.save(voiture);
         } catch (Exception e) {
             System.out.println("Erreur " + e.getMessage());
         }
